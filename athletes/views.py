@@ -25,14 +25,14 @@ def createAthlete(request):
     form = AthleteForm()
 
     if request.method == 'POST':
-        sponsors = request.POST.get('sponsors').split(',')
+        newsponsors = request.POST.get('sponsors').split(',')
         form = AthleteForm(request.POST, request.FILES)
         if form.is_valid():
             athlete = form.save(commit=False)
             athlete.club = profile
             athlete.save()
             
-            for sponsor in sponsors:
+            for sponsor in newsponsors:
                 sponsor, created = Sponsor.objects.get_or_create(name=sponsor)
                 athlete.sponsors.add(sponsor)
             return redirect('account')
@@ -47,11 +47,11 @@ def updateAthlete(request, pk):
     form = AthleteForm(instance=athlete)
 
     if request.method == 'POST':
-        sponsors = request.POST.get('sponsors').split(',')
+        newsponsors = request.POST.get('sponsors').split(',')
         form = AthleteForm(request.POST, request.FILES, instance=athlete)
         if form.is_valid():
             form.save()
-            for sponsor in sponsors:
+            for sponsor in newsponsors:
                 sponsor, created = Sponsor.objects.get_or_create(name=sponsor)
                 athlete.sponsors.add(sponsor)
             return redirect('account')
