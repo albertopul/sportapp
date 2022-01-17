@@ -80,6 +80,16 @@
                             <a title="Youtube" href="{{athlete.social_youtube}}" target="_blank"><i class="im im-youtube"></i></a>
                           </li>
                         {% endif %}
+                        {% if athlete.social_website %}
+                          <li>
+                            <a title="Youtube" href="{{athlete.social_website}}" target="_blank"><i class="im im-globe"></i></a>
+                          </li>
+                        {% endif %}
+                        {% if athlete.social_email %}
+                          <li>
+                            <a title="Youtube" href="{{athlete.social_email}}" target="_blank"><i class="im im-mail"></i></a>
+                          </li>
+                        {% endif %}
                         
                         <div class="singleAthlete__Sponsors">
                           {% if athlete.sponsor_1 %}
