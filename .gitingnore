@@ -1,0 +1,4 @@
+first_django_project/
+.vscode/
+__pycache__/
+db.sqlite3

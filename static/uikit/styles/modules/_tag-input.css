@@ -1,0 +1,45 @@
+.input-sponsors {
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 2px solid var(--color-light);
+    padding: 0.6rem 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    transition: all 0.3s ease-in-out;
+    cursor: text;
+}
+
+.input-sponsors:focus-within {
+    border: 2px solid var(--color-main);
+}
+
+.input-sponsors input {
+    border: none;
+    font-size: 14px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+
+.input-sponsors input:focus {
+    outline: none;
+}
+
+.input-sponsor-list {
+    display: flex;
+    column-gap: 4px;
+    flex-wrap: wrap !important;
+    row-gap: 4px;
+}
+
+.input-sponsor-item {
+    white-space: nowrap;
+}
+
+.input-sponsor-item small {
+    margin-right: 6px;
+}
+
+.input-sponsor-item i {
+    color: var(--color-white);
+    cursor: pointer;
+}

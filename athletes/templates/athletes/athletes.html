@@ -1,0 +1,77 @@
+{% extends 'main.html' %}
+{% block content %}
+
+
+<!-- Main Section -->
+  <main class="athletes">
+    <section class="hero-section text-center">
+      <div class="container container--narrow">
+        <div class="hero-section__box">
+          <h2>Search for <span>Athletes</span></h2>
+        </div>
+
+        <div class="hero-section__search">
+          <form id="searchForm" class="form" action="{% url 'athletes' %}" method="get">
+            <div class="form__field">
+              <label for="formInput#search">Search By Athletes </label>
+              <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                placeholder="Search by athlete" value="{{search_query}}" />
+            </div>
+
+            <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- Search Result -->
+    <section class="athletesList">
+      <div class="container">
+        <div class="grid grid--three">
+        {% for athlete in athletes %}
+          <div class="column card">
+            <div class="athlete">
+              <a href="{% url 'athlete' athlete.id %}" class="athlete">
+                <img class="athlete__thumbnail" src="{{athlete.imageURL}}" alt="athlete thumbnail" />
+                <div class="card__body">
+                  <h3 class="athlete__title">{{athlete.name}}</h3>
+                  <p><a class="athlete__author" href="{% url 'user-profile' athlete.club.id %}">
+                  {{athlete.club.name}}</a></p>
+                  <br>
+                  
+                  {% if athlete.social_facebook %}
+                      <a title="Facebook" href="{{athlete.social_facebook}}" target="_blank"><i class="im im-facebook"></i></a>
+                  {% endif %}
+                  {% if athlete.social_youtube %}
+                      <a title="Youtube" href="{{athlete.social_youtube}}" target="_blank"><i class="im im-youtube"></i></a>
+                  {% endif %}
+                  {% if athlete.social_website %}
+                      <a title="Personal Website" href="{{athlete.social_website}}" target="_blank"><i class="im im-globe"></i></a>
+                  {% endif %}
+                  {% if athlete.social_mail %}
+                      <a title="Email" href="mailto:{{athlete.social_mail}}" target="_blank"><i class="im im-mail"></i></a>
+                  {% endif %}
+                    <div>
+                      {% for sponsor in athlete.sponsors.all %}
+                      <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">
+                        <small>{{sponsor}}</small>
+                      </span>
+                      {% endfor %}
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% include 'pagination.html' with queryset=athletes custom_range=custom_range %}    
+  </main>
+
+
+
+
+
+
+{% endblock content %}
+  

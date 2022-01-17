@@ -1,0 +1,128 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<!-- Main Section -->
+  <main class="profile my-md">
+    <div class="container">
+      <div class="layout">
+        <div class="column column--1of3">
+          <div class="card text-center">
+            <div class="card__body club">
+              <img class="avatar avatar--xl" src="{{profile.imageURL}}" />
+              <h2 class="club__name">{{profile.name}}</h2>
+              <p class="club__title">{{profile.short_info}}</p>
+              <p class="club__location">{{profile.location}}</p>
+              <ul class="club__social">
+
+                {% if profile.social_youtube %}
+                <li>
+                  <a title="Youtube" href="{{profile.social_youtube}}" target="_blank"><i class="im im-youtube"></i></a>
+                </li>
+                {% endif %}
+                {% if profile.social_website %}
+                <li>
+                  <a title="Personal Website" href="{{profile.social_website}}" target="_blank"><i class="im im-globe"></i></a>
+                </li>
+                {% endif %}
+                {% if profile.social_facebook %}
+                <li>
+                  <a title="Facebook" href="{{profile.social_facebook}}" target="_blank"><i class="im im-facebook"></i></a>
+                </li>
+                {% endif %}
+              </ul>
+              {% if request.user.profile.id != profile.id %}
+              <a href="{% url 'create-message' profile.id %}" class="btn btn--sub btn--lg">Send Message </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="column column--2of3">
+          <div class="clubInfo">
+            <h3 class="clubInfo__title">About Us</h3>
+            <p class="clubInfo__about">{{profile.bio}}</p>
+          </div>
+          <div class="clubInfo">
+            <h3 class="clubInfo__title">Disciplines</h3>
+            <div class="clubInfo__skills">
+
+            {% for skill in topSkills %}
+              <div class="clubSkill">
+                <h4 class="clubSkill__title">{{skill.name}}</h4>
+                <p class="clubSkill__info">{{skill.description}}</p>
+                </div>            
+            {% endfor %}
+            </div>
+          </div>
+          <div class="clubInfo">
+            <h3 class="clubInfo__title">Athletes</h3>
+            <div class="grid grid--three">
+            {% for athlete in profile.athlete_set.all %}
+              <div class="column">
+                <div class="card athlete">
+                  <a href="{% url 'athlete' athlete.id %}" class="athlete">
+                    <img class="athlete__thumbnail" src="{{athlete.imageURL}}"
+                     alt="athlete thumbnail" />
+                    <div class="card__body">
+                      <h3 class="athlete__title">{{athlete.name}}</h3>
+                      <p><a class="athlete__author" href="{% url 'user-profile' athlete.club.id %}">
+                      Member of <br>{{athlete.club.name}}</a></p>
+                      <div class="athlete__sponsors">
+                        <br>
+                        {% if athlete.social_facebook %}
+                          <li>
+                            <a title="Facebook" href="{{athlete.social_facebook}}" target="_blank"><i class="im im-facebook"></i></a>
+                          </li>
+                        {% endif %}
+                        {% if athlete.social_youtube %}
+                          <li>
+                            <a title="Youtube" href="{{athlete.social_youtube}}" target="_blank"><i class="im im-youtube"></i></a>
+                          </li>
+                        {% endif %}
+                        
+                        <div class="singleAthlete__Sponsors">
+                          {% if athlete.sponsor_1 %}
+                          Sponsored by<br>
+                          <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">
+                            <small>{{athlete.sponsor_1}}</small>
+                          </span>
+                          {% endif %}
+                          {% if athlete.sponsor_2 %}
+                          <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">
+                            <small>{{athlete.sponsor_2}}</small>
+                          </span>
+                          {% endif %}
+                          {% if athlete.sponsor_3 %}
+                          <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">
+                            <small>{{athlete.sponsor_3}}</small>
+                          </span>
+                          {% endif %}
+                          {% if athlete.sponsor_4 %}
+                          <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">
+                            <small>{{athlete.sponsor_4}}</small>
+                          </span>
+                          {% endif %}
+                          {% if athlete.sponsor_5 %}
+                          <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">
+                            <small>{{athlete.sponsor_5}}</small>
+                          </span>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+
+{% endblock content %}

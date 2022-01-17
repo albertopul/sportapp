@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<!-- Main Section -->
+<main class="profile my-md">
+  <div class="container">
+    <div class="layout">
+      <div class="column column--1of3">
+        <div class="card text-center">
+          <div class="card__body club">
+            <img class="avatar avatar--xl" src="{{athlete.imageURL}}" />
+            <h2 class="club__name">{{athlete.name}}</h2>
+            <a href="{% url 'user-profile' athlete.club.id %}" class="singleAthlete__club">{{athlete.club.name}}</a>
+            <br>
+            {% if athlete.social_facebook %}             
+                <a title="Facebook" href="{{athlete.social_facebook}}" target="_blank"><i class="im im-facebook"></i></a>              
+            {% endif %}
+            {% if athlete.social_youtube %}   
+                <a title="Youtube" href="{{athlete.social_youtube}}" target="_blank"><i class="im im-youtube"></i></a>
+            {% endif %}
+            {% if athlete.social_website %}
+                <a title="Personal Website" href="{{athlete.social_website}}" target="_blank"><i class="im im-globe"></i></a>
+            {% endif %}
+            {% if athlete.social_mail %}
+                <a title="Email" href="mailto:{{athlete.social_mail}}" target="_blank"><i class="im im-mail"></i></a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+  
+        <div class="column column--2of3">
+            {% if athlete.highlight_image %}
+            <img class=".singleAthlete__preview" src="{{athlete.highlight_image.url}}" />
+            {% endif %}
+          <h2 class="singleAthlete__subtitle">About the Athlete</h2>
+          <div class="singleAthlete__info">
+            {{athlete.description}}
+            
+          </div><br>
+          
+          <div class="singleAthlete__Sponsors">
+            {% if athlete.sponsors %}
+              <h4 class="singleAthlete__subtitle">Sponsors</h4>
+              {% for sponsor in athlete.sponsors.all %}
+                <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">
+                  <small>{{sponsor}}</small>
+                </span>
+              {% endfor %}
+            {% endif %}
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    </div>
+  </main>
+{% endblock content %}

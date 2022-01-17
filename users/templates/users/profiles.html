@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<!-- Main Section -->
+<main class="home">
+    <section class="hero-section text-center">
+        <div class="container container--narrow">
+            <div class="hero-section__box">
+                <h2>CONNECT WITH</h2>
+                <h2><span>THE BEST</span></h2>
+                <h2>SPORT CLUBS</h2>
+            </div>
+
+            <div class="hero-section__search">
+
+                <form id="searchForm" class="form" action="{% url 'profiles' %}" method="get">
+                    <div class="form__field">
+                        <label for="formInput#search">Search for Sport Clubs </label>
+                        <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                            value="{{search_query}}" placeholder="Search for club in names or descriptions..." />
+                    </div>
+
+                    <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+                </form>
+
+            </div>
+        </div>
+    </section>
+    <!-- Search Result: ClubList -->
+    <section class="clublist">
+        <div class="container">
+            <div class="grid grid--three">
+
+                {% for profile in profiles %}
+                <div class="column card">
+                    <div class="club">
+                        <a href="{% url 'user-profile' profile.id %}" class="card__body">
+                            <div class="club__profile">
+                                <img class="avatar avatar--md" src="{{ profile.imageURL }}" alt="image" />
+                                <div class="club__meta">
+                                    <h3>{{profile.name}}</h3>
+                                    {% if profile.short_intro %}
+                                    <h5>{{profile.short_intro|slice:"60"}}</h5>
+                                    {% endif %}
+                                    {% if profile.location %}
+                                    <h6>{{profile.location}}</h6>
+                                    {% endif %}
+                                </div>
+                            </div>
+                                
+                            <p class="club__info">{{profile.bio|slice:"150"}}...</p>
+                            
+                            <div class="club__skills">
+
+                                {% for skill in profile.skill_set.all|slice:"5" %}
+                                <span class="sponsor sponsor--pill sponsor--main">
+                                    <small>{{skill}}</small>
+                                </span>
+                                {% endfor %}
+                                
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    {% include 'pagination.html' with queryset=profiles custom_range=custom_range %}    
+</main>
+
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<!-- Main Section -->
+    <main class="formPage my-xl">
+        <div class="content-box">
+            <div class="formWrapper">
+                <a class="backButton" href="{% url 'account' %}"><i class="im im-angle-left"></i></a>
+                <br>
+
+                <form class="form" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                    <!-- Input:Text -->
+                    <div class="form__field">
+                        <label for="formInput#text">{{field.label}}</label>
+                        {{field}}
+                    </div>
+
+                    {% endfor %}
+
+                    <div class="form__field">
+                        {% for sponsor in athlete.sponsors.all %}
+                        <div class="athlete-sponsor sponsor sponsor--pill sponsor--main" data-sponsor="{{sponsor.id}}"
+                            data-athlete="{{athlete.id}}">{{sponsor.name}} &#215;</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form__field">
+                        <label for="formInput#text">Sponsors</label>
+                        <textarea class="input" name="sponsors" placeholder="Add sponsors separating with a comma"></textarea>
+                    </div>
+                    <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
