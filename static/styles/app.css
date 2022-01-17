@@ -267,6 +267,7 @@ img {
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    justify-content: space-around;
 }
 
 .clublist .club .club__meta h3 {
