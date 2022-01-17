@@ -92,31 +92,12 @@
                         {% endif %}
                         
                         <div class="singleAthlete__Sponsors">
-                          {% if athlete.sponsor_1 %}
-                          Sponsored by<br>
+                          {% if athlete.sponsors %}                          
+                          {% for sponsor in athlete.sponsors.all %}
                           <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">
-                            <small>{{athlete.sponsor_1}}</small>
+                            <small>{{sponsor}}</small>
                           </span>
-                          {% endif %}
-                          {% if athlete.sponsor_2 %}
-                          <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">
-                            <small>{{athlete.sponsor_2}}</small>
-                          </span>
-                          {% endif %}
-                          {% if athlete.sponsor_3 %}
-                          <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">
-                            <small>{{athlete.sponsor_3}}</small>
-                          </span>
-                          {% endif %}
-                          {% if athlete.sponsor_4 %}
-                          <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">
-                            <small>{{athlete.sponsor_4}}</small>
-                          </span>
-                          {% endif %}
-                          {% if athlete.sponsor_5 %}
-                          <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">
-                            <small>{{athlete.sponsor_5}}</small>
-                          </span>
+                          {% endfor %}
                           {% endif %}
                         </div>
                       </div>
