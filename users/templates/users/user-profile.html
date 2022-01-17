@@ -92,13 +92,9 @@
                         {% endif %}
                       </div>
                         <div class="singleAthlete__Sponsors">
-                          {% if athlete.sponsors %}                          
                           {% for sponsor in athlete.sponsors.all %}
-                          <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">
-                            <small>{{sponsor}}</small>
-                          </span>
-                          {% endfor %}
-                          {% endif %}
+                              <span class="sponsor sponsor--pill sponsor--sub sponsor--lg">{{sponsor}}</span>
+                            {% endfor %}
                         </div>
                 
                     </div>
