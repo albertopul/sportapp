@@ -32,7 +32,7 @@ def createAthlete(request):
             athlete.club = profile
             athlete.save()
             
-            for sponsor in athlete.sponsors.all():
+            for sponsor in sponsors:
                 sponsor, created = Sponsor.objects.get_or_create(name=sponsor)
                 athlete.sponsors.add(sponsor)
             return redirect('account')
