@@ -28,22 +28,22 @@ See this website here: https://sportclubsapp.herokuapp.com
 * Django REST Framework
 
 # Home Page
-<img src="./static/images/ home.jpg">  
+<img src="./static/images/home.jpg">  
 
 # Athlete Page
-<img src="./static/images/ athlete.jpg">  
+<img src="./static/images/athlete.jpg">  
 
 # Club Page
-<img src="./static/images/ club.jpg">  
+<img src="./static/images/club.jpg">  
 
 # Club Inbox
-<img src="./static/images/ inbox.jpg">  
+<img src="./static/images/inbox.jpg">  
 
 # Login Page
-<img src="./static/images/ login.jpg">
+<img src="./static/images/login.jpg">
 
 # Registration Page
-<img src="./static/images/ register.jpg">
+<img src="./static/images/register.jpg">
 
 # API Page
-<img src="./static/images/ api.jpg">
+<img src="./static/images/api.jpg">
